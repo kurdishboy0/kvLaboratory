@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --foreground-rgb: 15, 23, 42;
+  --background-rgb: 248, 250, 252;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  min-height: 100vh;
+}
+
+[dir="rtl"] {
+  font-family: 'Noto Sans Arabic', 'Noto Kufi Arabic', system-ui, sans-serif;
+}
+
+[dir="ltr"] {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Lab equipment animations */
+.equipment-hover {
+  @apply transition-all duration-200 cursor-pointer;
+}
+.equipment-hover:hover {
+  @apply scale-105 shadow-lg;
+}
+
+/* ELISA plate well animations */
+.well {
+  @apply transition-all duration-300 cursor-pointer rounded-full;
+}
+.well:hover {
+  @apply scale-110 ring-2 ring-primary-400;
+}
+.well-filled {
+  animation: fillWell 0.5s ease-in-out;
+}
+@keyframes fillWell {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Step transition */
+.step-enter {
+  animation: slideIn 0.3s ease-out;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Feedback animations */
+.feedback-correct {
+  animation: correctPulse 0.5s ease-in-out;
+}
+@keyframes correctPulse {
+  0% { background-color: transparent; }
+  50% { background-color: rgb(220, 252, 231); }
+  100% { background-color: transparent; }
+}
+
+.feedback-incorrect {
+  animation: shake 0.4s ease-in-out;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+/* Drag and drop */
+.dragging {
+  @apply opacity-50 scale-105;
+}
+.drag-over {
+  @apply border-primary-500 bg-primary-50;
+}
+
+/* Progress bar fill */
+.progress-fill {
+  transition: width 0.5s ease-in-out;
+}
+
+/* Incubation animation */
+.incubation-pulse {
+  animation: incubate 2s ease-in-out infinite;
+}
+@keyframes incubate {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* Washing animation */
+.washing-wave {
+  animation: wave 1s ease-in-out infinite;
+}
+@keyframes wave {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+/* Pipette tip drop */
+.liquid-drop {
+  animation: drop 0.6s ease-in;
+}
+@keyframes drop {
+  0% { transform: translateY(-10px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
